@@ -2,7 +2,7 @@
 Installing Ubuntu on Cavium ThunderX ARM64 MT30-GS1/ MT30-GS0
 
 MT30-GS1
-Use Ubuntu 18.04.4
+Use Ubuntu 18.04.3
 Set the following boot flags: console=tty0 immou.passthrough=1 acpi=force 
 
 MT30-GS0
