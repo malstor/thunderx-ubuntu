@@ -14,12 +14,12 @@ Set the following boot flags: console=tty0 immou.passthrough=1 arm-smmu.disable_
 
 For both boards use manual partitions, create a 512MB BIOS boot area, 2GB EFI, and the remainder btrfs /
 
-Delete the firmware module in the /lib/firmware/cavium folder cnx55 or whatever and install the firmware in this repo under the firmware folder. 
+Delete the firmware module in the /lib/firmware/cavium folder cnx55 or whatever and install the firmware in this repo.
 
-Download them to a folder and do:
+Download the firmware modules and makefile to a folder and do:
 make && make install
 
-Without these modules to offload crypto, there were race conditions that manifested in Docker, when extracting images that were realted to the streaming hash functions in Go, it would result in an "Unexpected EOF" error message. By offloading the crypto to silicon it unfucks the issue. 
+Without these modules to offload crypto, there were race conditions that manifest in apps like Docker, or any app that uses streaming hash functions in Go, it would result in an "Unexpected EOF" error message. By offloading the crypto to silicon it unfucks the issue. 
 
 
 
