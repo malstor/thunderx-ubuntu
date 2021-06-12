@@ -16,6 +16,27 @@ https://download.gigabyte.com/FileList/BIOS/server_system_bios_r120-t3x_f02.zip
 
 The system seems stable out of the gate. 
 
+Still need to disable the hardware offloading on the nic:
+ethtool --offload enP2p1s0f4 rx off  tx off
+
+To preserve this, set you cron:
+
+crontab -e 
+
+@reboot ethtool --offload enP2p1s0f4 rx off  tx off
+
+I've had success with the latest version of golang:
+
+https://golang.org/dl/go1.16.5.linux-arm64.tar.gz
+
+and docker:
+
+https://docs.docker.com/engine/install/ubuntu/
+
+After installing docker, reboot to reload the network stack. 
+
+
+
 ----------
 
 Hacky way for a more recent kernel:
