@@ -2,7 +2,9 @@
 Installing Ubuntu on Cavium ThunderX ARM64 MT30-GS1/ MT30-GS0
 
 Update for MT30-GS0:
-After a lot of experamentation, I've found that Ubuntu 16.04.3 is really the best option for a simple setup.
+After a lot of experamentation, I've found that Ubuntu 16.04.3 is really the best option for a simple setup. 
+
+Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-87-generic aarch64)
 
 https://old-releases.ubuntu.com/releases/xenial/ubuntu-16.04-server-amd64.iso
 
