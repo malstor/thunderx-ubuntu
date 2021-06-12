@@ -1,6 +1,17 @@
 # thunderx-ubuntu
 Installing Ubuntu on Cavium ThunderX ARM64 MT30-GS1/ MT30-GS0
 
+Update for MT30-GS0:
+After a lot of experamentation, I've found that Ubuntu 16.04.3 is really the best option for a simple setup. 
+https://old-releases.ubuntu.com/releases/xenial/ubuntu-16.04-server-amd64.iso
+With this release, and using the latest firmware updates available:
+https://download.gigabyte.com/FileList/Firmware/server_mb_firmware_ast2400_marvell.zip
+https://download.gigabyte.com/FileList/BIOS/server_system_bios_r120-t3x_f02.zip
+The system seems stable out of the gate. 
+
+----------
+
+Hacky way for a more recent kernel:
 Downgrade to the T49 BIOS version, F02 has some fixes for pantsdown, however it seems to cause some issues with the main ubuntu kernels available; the issue is the shared BMC memory so just disable it by cutting the trace if you are concerned. 
 
 MT30-GS1
