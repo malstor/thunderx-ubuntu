@@ -49,6 +49,8 @@ Log out and log back in so that your group membership is re-evaluated.
 
 reboot or reload the network stack. 
 
+Specific to ThunderX CN8XX, still needs the flag `arm-smmu.disable_bypass=n` :/ there is a kernle patch here: https://patchwork.kernel.org/project/linux-arm-msm/patch/20190301192017.39770-1-dianders@chromium.org/
+
 
 
 ----------
