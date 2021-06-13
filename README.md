@@ -56,7 +56,7 @@ Specific to ThunderX CN8XX, still needs the flag `arm-smmu.disable_bypass=n` :/ 
 ----------
 
 Hacky way for a more recent kernel:
-Downgrade to the T49 BIOS version, F02 has some fixes for pantsdown, however it seems to cause some issues with the main ubuntu kernels available; the issue is the shared BMC memory so just disable it by cutting the trace if you are concerned. 
+Downgrade to the T49 BIOS version, F02 has some fixes for pantsdown, however it seems to cause some issues with the main ubuntu kernels available; the issue is the shared BMC memory, this board is really beata XD
 
 MT30-GS1
 Use Ubuntu 18.04.3 and hold the kernel at 4.15.0-55-generic
