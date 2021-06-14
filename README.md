@@ -16,8 +16,12 @@ https://download.gigabyte.com/FileList/BIOS/server_system_bios_r120-t3x_f02.zip
 
 The system seems stable out of the gate. 
 
-Still need to disable the hardware offloading on the nic:
-ethtool --offload enP2p1s0f4 rx off  tx off
+Still need to disable the hardware offloading on the nic and the docker interface as well:
+`ethtool --offload enP2p1s0f4 rx off  tx off`
+`ethtool --offload docker0 rx off tx off`
+Specific to ThunderX CN80XX, still needs the flag `iommu.passthrough=1 arm-smmu.disable_bypass=n console=tty0` :/ there is a kernle patch here: https://patchwork.kernel.org/project/linux-arm-msm/patch/20190301192017.39770-1-dianders@chromium.org/
+
+
 
 To preserve this, set you cron:
 
@@ -49,7 +53,7 @@ Log out and log back in so that your group membership is re-evaluated.
 
 reboot or reload the network stack. 
 
-Specific to ThunderX CN8XX, still needs the flag `arm-smmu.disable_bypass=n` :/ there is a kernle patch here: https://patchwork.kernel.org/project/linux-arm-msm/patch/20190301192017.39770-1-dianders@chromium.org/
+
 
 
 
@@ -74,7 +78,7 @@ Delete the firmware module in the /lib/firmware/cavium folder cnx55 or whatever 
 Download the firmware modules and makefile to a folder and do:
 make && make install
 
-Without these modules to offload crypto, there were race conditions that manifest in apps like Docker, or any app that uses streaming hash functions in Go, it would result in an "Unexpected EOF" error message. By offloading the crypto to silicon it unfucks the issue. 
+Without these modules to offload crypto, there were race conditions that manifest in apps like Docker, or any app that uses streaming hash functions in Go, it would result in an "Unexpected EOF" error message. By offloading the crypto to silicon it fixes the issue. 
 
 
 
