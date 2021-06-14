@@ -1,62 +1,6 @@
 # thunderx-ubuntu
 Installing Ubuntu on Cavium ThunderX ARM64 MT30-GS1/ MT30-GS0
 
-Update for MT30-GS0:
-After a lot of experamentation, I've found that Ubuntu 16.04.3 is really the best option for a simple setup. 
-
-Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-87-generic aarch64)
-
-https://old-releases.ubuntu.com/releases/xenial/ubuntu-16.04-server-amd64.iso
-
-With this release, and using the latest firmware updates available:
-
-https://download.gigabyte.com/FileList/Firmware/server_mb_firmware_ast2400_marvell.zip
-
-https://download.gigabyte.com/FileList/BIOS/server_system_bios_r120-t3x_f02.zip
-
-The system seems stable out of the gate. 
-
-Still need to disable the hardware offloading on the nic and the docker interface as well:
-`ethtool --offload enP2p1s0f4 rx off  tx off`
-`ethtool --offload docker0 rx off tx off`
-Specific to ThunderX CN80XX, still needs the flag `iommu.passthrough=1 arm-smmu.disable_bypass=n console=tty0` :/ there is a kernle patch here: https://patchwork.kernel.org/project/linux-arm-msm/patch/20190301192017.39770-1-dianders@chromium.org/
-
-
-
-To preserve this, set you cron:
-
-crontab -e 
-
-@reboot ethtool --offload enP2p1s0f4 rx off  tx off
-
-I've had success with the latest version of golang:
-
-https://golang.org/dl/go1.16.5.linux-arm64.tar.gz
-
-and docker:
-
-https://docs.docker.com/engine/install/ubuntu/
-
-After installing docker,
-
-Create the docker group and add your user:
-
-    Create the docker group.
-
- sudo groupadd docker
-
-Add your user to the docker group.
-
- sudo usermod -aG docker $USER
-
-Log out and log back in so that your group membership is re-evaluated.
-
-reboot or reload the network stack. 
-
-
-
-
-
 ----------
 
 Hacky way for a more recent kernel:
@@ -80,6 +24,21 @@ make && make install
 
 Without these modules to offload crypto, there were race conditions that manifest in apps like Docker, or any app that uses streaming hash functions in Go, it would result in an "Unexpected EOF" error message. By offloading the crypto to silicon it fixes the issue. 
 
+----------
+Tips:
 
+Disable hw offloading if you have network errors
 
+`ethtool --offload enP2p1s0f4 rx off  tx off`
+`ethtool --offload docker0 rx off tx off`
 
+----------
+Useful Links:
+
+https://old-releases.ubuntu.com/releases/xenial/ubuntu-16.04-server-amd64.iso
+
+https://download.gigabyte.com/FileList/Firmware/server_mb_firmware_ast2400_marvell.zip
+
+https://download.gigabyte.com/FileList/BIOS/server_system_bios_r120-t3x_f02.zip
+
+https://patchwork.kernel.org/project/linux-arm-msm/patch/20190301192017.39770-1-dianders@chromium.org/
