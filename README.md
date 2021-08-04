@@ -27,7 +27,7 @@ Without these modules to offload crypto, there were race conditions that manifes
 ----------
 Tips:
 
-Disable hw offloading if you have network errors
+Disable hw offloading if you have network errors, in praticular, so some reason checksums errors with applications like elasticsearch are common without disabling this. 
 
 `ethtool --offload enP2p1s0f4 rx off  tx off`
 `ethtool --offload docker0 rx off tx off`
