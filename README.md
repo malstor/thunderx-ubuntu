@@ -9,6 +9,7 @@ Downgrade to the T49 BIOS version, F02 has some fixes for pantsdown, however it 
 MT30-GS1
 Use Ubuntu 18.04.3 and hold the kernel at 4.15.0-45-generic
 Set the following boot flags at install: console=tty0 immou.passthrough=1 acpi=force 
+
 #with other kernels, if you have issues, after installing add: arm-smmu.disable_bypass=n
 
 MT30-GS0
