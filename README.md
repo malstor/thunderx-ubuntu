@@ -7,9 +7,9 @@ Hacky way for a more recent kernel:
 Downgrade to the T49 BIOS version, F02 has some fixes for pantsdown, however it seems to cause some issues with the main ubuntu kernels available; the issue is the shared BMC memory, this board is really beata XD
 
 MT30-GS1
-Use Ubuntu 18.04.3 and hold the kernel at 4.15.0-55-generic
+Use Ubuntu 18.04.3 and hold the kernel at 4.15.0-45-generic
 Set the following boot flags at install: console=tty0 immou.passthrough=1 acpi=force 
-After installing add: arm-smmu.disable_bypass=n
+#with other kernels, if you have issues, after installing add: arm-smmu.disable_bypass=n
 
 MT30-GS0
 Use Ubuntu 18.04.1 to install and update to the latest version via apt update/upgrade update to the 4.15.0-129-generic kernel after the install. 
