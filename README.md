@@ -1,5 +1,5 @@
 # thunderx-ubuntu
-Installing Ubuntu on Cavium ThunderX ARM64 MT30-GS1/ MT30-GS0
+Installing Ubuntu on Cavium ThunderX ARM64 MT30-GS1/ MT30-GS0/ MT70-HD0
 
 ----------
 
@@ -14,7 +14,7 @@ Set the following boot flags at install:
 #with other kernels, if you have issues, after installing add: 
 `arm-smmu.disable_bypass=n`
 
-MT30-GS0
+MT30-GS0/ MT70-HD0
 Use Ubuntu 18.04.1 to install and update to the latest version via apt update/upgrade update to the 4.15.0-129-generic kernel after the install. 
 Set the following boot flags: 
 `console=tty0 immou.passthrough=1 arm-smmu.disable_bypass=n acpi=force`
