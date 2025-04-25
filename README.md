@@ -1,3 +1,22 @@
+Edit: FYI, if you are using more recent kernels, including 6.1.0-32 with Deiban or Ubuntu, try the following boot flags:
+`acpi=off efi=novamap iommu.passthrough=1 arm-smmu.disable_bypass=n swiotlb=65536 libata.force=noncq,3.0Gbps`
+
+`libata.force=noncq,3.0Gbps` is only nessecary if you are using SATA on the MT30-GS0 and thunderx1 with known SATA crappyness, use PCIe storage on this board or NAS, SATA is buggy as hell, but I've booted and run it on SATA with these flags. If you want a stable system, dont use SATA. 
+
+I've also had issues with mass storage and USB on this board, I installed using the BMC virtual media and vKVM. To use this ancient stuff, you will need to edit your Java security file, I use a Windows VM for old vKVMs that need completely insecure settings. 
+
+Find this file `C:\Program Files\Java\jre<version>\lib\security\java.security`
+
+and delete all the disables crypto and tls, so these settings:
+`jdk.certpath.disabledAlgorithms=MD2, MD5, SHA1 jdkCA & denyAfter 2019-01-01, RSA keySize < 1024
+jdk.tls.disabledAlgorithms=SSLv3, RC4, MD5withRSA, DH keySize < 1024`
+look like this:
+`jdk.certpath.disabledAlgorithms=
+jdk.tls.disabledAlgorithms=`
+
+Enjoy a modren kernel on this buggy, power hungry, but kinda cool board. 
+
+---older-stuff---
 # thunderx-ubuntu
 Installing Ubuntu on Cavium ThunderX ARM64 MT30-GS1/ MT30-GS0/ MT70-HD0
 
