@@ -1,4 +1,4 @@
-Edit: FYI, if you are using more recent kernels, including 6.1.0-32 with Deiban or Ubuntu, try the following boot flags:
+Edit: FYI, if you are using more recent kernels, including 6.1.0-32 with Debian or Ubuntu, try the following boot flags:
 `acpi=off efi=novamap iommu.passthrough=1 arm-smmu.disable_bypass=n swiotlb=65536 libata.force=noncq,3.0Gbps`
 
 `libata.force=noncq,3.0Gbps` is only nessecary if you are using SATA on the MT30-GS0 and thunderx1 with known SATA crappyness, use PCIe storage on this board or NAS, SATA is buggy as hell, but I've booted and run it on SATA with these flags. If you want a stable system, dont use SATA. 
