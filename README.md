@@ -16,6 +16,8 @@ jdk.tls.disabledAlgorithms=`
 
 Enjoy a modren kernel on this buggy, power hungry, but kinda cool board. 
 
+So far, I havent needed to disable the network offloading, or use the custom firmware modules like I did with earlier kernels. 
+
 ---older-stuff---
 # thunderx-ubuntu
 Installing Ubuntu on Cavium ThunderX ARM64 MT30-GS1/ MT30-GS0/ MT70-HD0
