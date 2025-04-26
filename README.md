@@ -1,7 +1,7 @@
 Edit: FYI, if you are using more recent kernels, including 6.1.0-32 with Debian or Ubuntu, try the following boot flags:
-`acpi=off efi=novamap iommu.passthrough=1 arm-smmu.disable_bypass=n swiotlb=65536 libata.force=noncq,3.0Gbps`
+`acpi=off efi=novamap iommu.passthrough=1 arm-smmu.disable_bypass=n swiotlb=65536 libata.force=0:noncq,3.0Gbps`
 
-`libata.force=noncq,3.0Gbps` is only nessecary if you are using SATA on the MT30-GS0 and thunderx1 with known SATA crappyness, use PCIe storage on this board or NAS, SATA is buggy as hell, but I've booted and run it on SATA with these flags. If you want a stable system, dont use SATA. 
+`libata.force=0:noncq,3.0Gbps` is only nessecary if you are using SATA on the MT30-GS0 and thunderx1 with known SATA crappyness, use PCIe storage on this board or NAS, SATA is buggy as hell, but I've booted and run it on SATA with these flags. If you want a stable system, dont use SATA. `libdata.force=noncq,3.0Gbps` is supposed to do it for all of them, but it doesn't work that way, you will need to specify each SATA interface like this `libata.force=0:noncq,3.0Gbps,1:noncq,3.0Gbps` etc. then it actually does set the right speed limit where SATA on the MT30-GS0 CN88XX is more stable.
 
 I've also had issues with mass storage and USB on this board, I installed using the BMC virtual media and vKVM. To use this ancient stuff, you will need to edit your Java security file, I use a Windows VM for old vKVMs that need completely insecure settings. 
 
